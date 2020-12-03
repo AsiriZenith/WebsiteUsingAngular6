@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ConfigService } from '../service/config.service';
 
 @Component({
   selector: 'app-testimonial',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TestimonialComponent implements OnInit {
 
-  constructor() { }
+  testimonials = {};
+
+  constructor(private config: ConfigService) { }
 
   ngOnInit(): void {
+    this.testimonials = this.getTestimonials();
+  }
+
+  getTestimonials() {
+    return this.config.getConfig().testimonials;
   }
 
 }
